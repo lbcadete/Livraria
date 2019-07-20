@@ -20,6 +20,10 @@ export class LivroService {
     return this.http.put(this.urlBase+"/Livro/"+this.formData.Id, this.formData);
   }
 
+  deleteLivro(id: number){
+    return this.http.delete(this.urlBase+"/Livro/"+id);
+  }
+
   refresList(){
     this.http.get(this.urlBase+"/Livro")
       .toPromise()

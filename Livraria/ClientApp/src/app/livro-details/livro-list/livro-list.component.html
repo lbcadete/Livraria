@@ -2,5 +2,6 @@
     <tr *ngFor="let livro of service.list">
         <td (click)="preencherForm(livro)">{{livro.Id}}</td>
         <td (click)="preencherForm(livro)">{{livro.Nome}}</td>
+        <td><i class="far fa-trash-alt fa-lg text-danger" (click)="excluir(livro.Id)"></i></td>
     </tr>
 </table>

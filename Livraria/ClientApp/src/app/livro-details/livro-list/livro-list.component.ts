@@ -18,4 +18,16 @@ export class LivroListComponent implements OnInit {
   preencherForm(livro: Livro){
     this.service.formData = Object.assign({}, livro);
   }
+
+  excluir(id: number){
+    if (confirm("Tem certeza?")){
+      this.service.deleteLivro(id)
+      .subscribe(resp => {
+        this.service.refresList();
+      },
+        err => {
+          console.log(err);
+        });
+    }
+  }
 }
