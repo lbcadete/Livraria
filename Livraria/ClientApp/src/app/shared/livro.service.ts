@@ -7,11 +7,22 @@ import { HttpClient } from "@angular/common/http";
 })
 export class LivroService {
   formData: Livro;
+  list: Livro[];
   readonly urlBase = 'http://localhost:64662/api';
 
   constructor(private http: HttpClient) { }
 
-  postLivro(formData: Livro){
-    return this.http.post(this.urlBase+"/Livro" ,formData);
+  postLivro(){
+    return this.http.post(this.urlBase+"/Livro" ,this.formData);
+  }
+
+  putLivro(){
+    return this.http.put(this.urlBase+"/Livro/"+this.formData.Id, this.formData);
+  }
+
+  refresList(){
+    this.http.get(this.urlBase+"/Livro")
+      .toPromise()
+      .then(resp => this.list = resp as Livro[]);
   }
 }

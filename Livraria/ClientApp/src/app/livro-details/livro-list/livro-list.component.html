@@ -1,1 +1,6 @@
-<p>livro-list works!</p>
+<table class="table table-hover">
+    <tr *ngFor="let livro of service.list">
+        <td (click)="preencherForm(livro)">{{livro.Id}}</td>
+        <td (click)="preencherForm(livro)">{{livro.Nome}}</td>
+    </tr>
+</table>

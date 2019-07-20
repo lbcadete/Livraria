@@ -25,9 +25,17 @@ export class LivroDetailComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    this.service.postLivro(form.value).subscribe(
+    if (this.service.formData.Id == 0)
+      this.inserir(form);
+    else
+      this.atualizar(form);
+  }
+
+  inserir(form: NgForm){
+    this.service.postLivro().subscribe(
       res => {
         this.resetForm(form);
+        this.service.refresList();
       },
       err => {
         console.log(err);
@@ -35,4 +43,15 @@ export class LivroDetailComponent implements OnInit {
     );
   }
 
+  atualizar(form: NgForm){
+    this.service.putLivro().subscribe(
+      res => {
+        this.resetForm(form);
+        this.service.refresList();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }
